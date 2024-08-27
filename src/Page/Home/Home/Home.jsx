@@ -13,6 +13,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//repair-my-car
-//yTZSgSHzl0paPQbB
