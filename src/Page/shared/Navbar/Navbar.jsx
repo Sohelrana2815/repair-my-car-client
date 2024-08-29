@@ -17,9 +17,11 @@ const Navbar = () => {
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>
-      <li>
-        <NavLink to="/myBooking">My Bookings</NavLink>
-      </li>
+      {user?.email && (
+        <li>
+          <NavLink to="/myBooking">My Bookings</NavLink>
+        </li>
+      )}
     </>
   );
 

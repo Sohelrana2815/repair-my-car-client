@@ -29,8 +29,8 @@ const Checkout = () => {
       .post("http://localhost:5000/bookings", customerInfo)
       .then((res) => {
         console.log(res.data);
-        if(res.data.insertedId){
-          alert('Service added successfully!')
+        if (res.data.insertedId) {
+          alert("Service added successfully!");
         }
       })
       .catch((error) => {

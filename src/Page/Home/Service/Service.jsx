@@ -6,7 +6,8 @@ const Service = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    axios("http://localhost:5000/services")
+    axios
+      .get("http://localhost:5000/services")
       .then((res) => {
         console.log(res.data);
         setServices(res.data);
