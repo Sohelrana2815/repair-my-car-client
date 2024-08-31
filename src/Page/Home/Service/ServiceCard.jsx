@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
@@ -21,4 +22,7 @@ const ServiceCard = ({ service }) => {
   );
 };
 
+ServiceCard.propTypes = {
+  service: PropTypes.object.isRequired,
+};
 export default ServiceCard;
