@@ -20,7 +20,12 @@ const MyBookings = () => {
     //     console.log(error);
     //   });
 
-    axiosSecure.get(url).then((res) => setMyBookings(res.data));
+    axiosSecure
+      .get(url, { withCredentials: true })
+      .then((res) => setMyBookings(res.data))
+      .catch((error) => {
+        console.log(error);
+      });
   }, [url, axiosSecure]);
 
   const handleDelete = (id) => {
@@ -49,7 +54,9 @@ const MyBookings = () => {
     const proceed = confirm("Are you sure you want to confirm this booking ?");
     if (proceed) {
       axios
-        .patch(`http://localhost:5000/bookings/${id}`, { status: "confirm" })
+        .patch(`http://localhost:5000/bookings/${id}`, {
+          status: "confirm",
+        })
         .then((res) => {
           console.log(res.data);
           if (res.data.modifiedCount > 0) {

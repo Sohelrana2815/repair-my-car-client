@@ -1,26 +1,23 @@
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-import useServices from "../../../hooks/useServices";
+import axios from "axios";
 import ServiceCard from "./ServiceCard";
+import { useEffect, useState } from "react";
 
 const Service = () => {
-  const services = useServices();
-
   // ----> Our objective is : DRY it means do not repeat your self
 
-  // const [services, setServices] = useState([]);
+  const [services, setServices] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5000/services")
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setServices(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/services")
+      .then((res) => {
+        console.log(res.data);
+        setServices(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="text-center">

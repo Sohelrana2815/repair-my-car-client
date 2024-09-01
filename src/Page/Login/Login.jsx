@@ -1,11 +1,13 @@
 // import { useContext } from "react";
 // import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   // const { signIn } = useContext(AuthContext);
-  const { signIn } = useAuth();
+  const { signIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,6 +21,12 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
+        const user = { email };
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+          });
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -39,6 +47,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                autoComplete="username"
                 name="email"
                 placeholder="Enter email"
                 className="input input-bordered"
@@ -54,6 +63,7 @@ const Login = () => {
                 name="password"
                 placeholder="Enter password"
                 className="input input-bordered"
+                autoComplete="current-password"
                 required
               />
             </div>

@@ -64,6 +64,7 @@ const SignUp = () => {
                 name="password"
                 placeholder="Enter password"
                 className="input input-bordered"
+                autoComplete="current-password"
                 required
               />
             </div>

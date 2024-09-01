@@ -17,11 +17,17 @@ const useAxiosSecure = () => {
         return res;
       },
       (error) => {
-        console.log("Error in the interceptor", error.response);
+        console.log("error tracked in the interceptor : ", error);
+
         if (error.response.status === 401 || error.response.status === 403) {
           console.log("logout the user");
-          logout();
-          navigate("/login");
+          logout()
+            .then(() => {
+              navigate("/login");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       }
     );
